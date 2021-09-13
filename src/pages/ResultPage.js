@@ -7,6 +7,7 @@ import CopyToClipboard from "react-copy-to-clipboard";
 import results from '../contents/results';
 import product from '../contents/product';
 import Buttons from '../components/Buttons';
+import SmallBtn from '../components/SmallBtn';
 // import KakaoShareBtn from '../components/Kakao';
 // import LinkCopyBtn from '../assets/btn/btn_link.svg';
 
@@ -123,6 +124,54 @@ const RecommandTop = styled.div`
     text-align: center;
 `
 
+const RecommandImg = styled.div`
+    position: relative;
+    margin: auto;
+    width: 148px;
+    height: 204px;
+    object-fit: contain;
+    grid-column-start: 1;
+`
+
+const RecommandName = styled.div`
+
+`
+
+const RecommandHouse = styled.div`
+
+`
+
+const SurveyWrap = styled.div`
+    position: relative;
+`
+
+const SurveyTop = styled.div`
+    position: relative;
+    margin: 20px;
+
+    font-family: "GmarketSansBold";
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 132%;
+
+    text-align: center;
+`
+
+const SurveyText = styled.h3`
+    position: relative;
+    margin: 4px;
+
+    font-family: "GmarketSansMedium";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 132%;
+
+    text-align: center;
+    color: #6e6e6e;
+`
+
 const FlexLayout = styled.div`
     display:flex;
     justify-content:center;
@@ -130,15 +179,42 @@ const FlexLayout = styled.div`
     margin-right:2.2rem;
 `
 
+const ShareSquare = styled.div`
+    width:100%;
+    height:20.8rem;
+    background-color:white;
+    border-radius: 0.5rem;
+    margin-top:1.7rem;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+`
+
+const Button = styled.button`
+    border: none;
+    outline:none;
+    background-color:white;
+    cursor:pointer;
+`
+
+const BtnToPage = styled(NavLink)`
+    text-decoration: none;
+    color:${props => props.theme.dark};
+`
+
+const Img = styled.img`
+`
+
 function ResultPage({ match }) {
     window.scrollTo(0, 0);
 
-    // const link = window.location.href;
+    const link = window.location.href;
     const finalType = match.params.finalType;
 
-    // const alertMessage = () => {
-    //     alert("내 룸미 결과가 클립보드에 담겼어요!");
-    // }
+    const alertMessage = () => {
+        alert("내 룸미 결과가 클립보드에 담겼어요!");
+    }
 
     if (finalType) { /* 그냥 전부일때 */
         return (
@@ -155,18 +231,18 @@ function ResultPage({ match }) {
                     <DivisionLine />
                     {/* <RecommandWrap>
                         <RecommandTop>오늘 파티에 이런 향수 어때요?</RecommandTop>
-                        <RecommandImg />
-                        <RecommandName />
-                        <RecommandHouse />
-                        <Buttons/>
-                    </RecommandWrap>
+                        <RecommandImg isNormal={finalType} src={product[finalType].img}/>
+                        <RecommandName>{product[finalType].name}</RecommandName>
+                        <RecommandHouse>{product[finalType].house}</RecommandHouse>
+                        <SmallBtn/>
+                    </RecommandWrap> */}
                     <DivisionLine />
                     <SurveyWrap>
                         <SurveyTop>평소 향수에 관심이 있으신가요?</SurveyTop>
                         <SurveyText>향수에 관한 생각을 설문조사로 알려주세요</SurveyText>
-                        <Buttons></Buttons>
-                    </SurveyWrap> */}
-                    {/* <FlexLayout>
+                        <SmallBtn text={"설문조사 참여하기!!"}/>
+                    </SurveyWrap>
+                    <FlexLayout>
                         <ShareSquare>
                             <FlexLayout>
                                 <KakaoShareBtn _sub={results[finalType].title} _title={results[finalType].name} _imageUrl={results[finalType].img} _finalType={finalType} />
@@ -176,7 +252,7 @@ function ResultPage({ match }) {
                             </FlexLayout>
                             <BtnToPage exact to='/'><Buttons type={'result-activated'} text={'테스트 다시 하기'} /></BtnToPage>
                         </ShareSquare>
-                    </FlexLayout> */}
+                    </FlexLayout>
                     {/* <ResultBottom>
 
                     </ResultBottom> */}
