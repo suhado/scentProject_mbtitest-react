@@ -12,8 +12,7 @@ const Button = styled.div`
 
     background: #ffffff;
     border-radius: 28px;
-    border: 1px;
-    border-color: #9706ED;
+    border: 1px solid #9706ED;
 
     font-family: "GmarketSansmedium";
     font-style: normal;

@@ -5,39 +5,30 @@ import contents from '../contents/questions';
 import Parser from 'html-react-parser';
 import { Redirect } from 'react-router-dom'
 
-
 const Wrapper = styled.div`
-    display: ${props => props.isShow === true ? 'flex' : 'none'};
-    width:100%;
-    height:100vh;
-    background-color:white;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
+  display: ${props => props.isShow === true ? 'flex' : 'none'};
+
+  background-color:white;
+  flex-direction:column;
+  align-items:center;
+  text-align: center;
 `
-const Container = styled.div`
-    margin-bottom:3rem;
-    text-align:center;
-    align-items:center;
-`
-// const Title = styled.div`
-//     font-family:'Jalnan';
-//     font-size:2.5rem;
-//     text-align:center;
-//     color:#00462A;
-//     margin-top:1.9rem;
-//     margin-bottom:8.4rem;
-// `
 
 const Text = styled.div`
-    font-family:'Jalnan';
-    font-size:1.9rem;
-    font-weight: light;
-    margin:0.5rem;
-    text-align:center;
-    color:black;
-    margin-top:3.9rem;
-    margin-bottom:8.4rem; 
+  position: absolute;
+  margin-top: 100px;
+  /* margin-bottom: 150px; */
+  font-family: 'GmarketSansMedium';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 132%;
+  text-align: center;
+  color: #2D2D2D;
+`
+const ButtonWrap = styled.div`
+  position: absolute;
+  margin-top: 82%;
 `
 
 function QuizPage({ isShow }) {
@@ -50,8 +41,6 @@ function QuizPage({ isShow }) {
   const [typeTF, setTypeTF] = useState(0);
   const [typeJP, setTypeJP] = useState(0);
   // const [finalType, setFinalType] = useState(0);
-  // const [turn, setTurn] = useState(0);
-
 
   const onConditionChange = (key) => {
 
@@ -78,6 +67,7 @@ function QuizPage({ isShow }) {
           }
         }
       }
+
     let num = result;
     // setFinalType(num);
     setLinkTo(linkResult + num);
@@ -86,19 +76,13 @@ function QuizPage({ isShow }) {
     setQuestionNum(questionNum + 1); /* 문제 번호 하나씩 증가 */
   }
 
-  /* 결과페이지 보려면 QuestionNum이 16이면 된다고 */
-  // const onClickResultBtn = () => {
-  //     setQuestionNum(16);
-  // }
-
-  
   if (questionNum < 12) { /* 1~11 문제 버튼 누르면 */
     return (
       <>
         <Wrapper isShow={isShow}>
-          <Container>
-            <Text>{Parser(contents[questionNum].question)} </Text> {/* 순서대로 질문 보여주기 */}
-            {contents[questionNum].answers.map((answer, i) => (
+            <Text>{Parser(contents[questionNum].question)}</Text> {/* 순서대로 질문 보여주기 */}
+          <ButtonWrap> 
+          {contents[questionNum].answers.map((answer, i) => (
               <ButtonComponent
                 key={'answer' + i}
                 idx={i}
@@ -106,7 +90,7 @@ function QuizPage({ isShow }) {
                 onclick={onConditionChange}
               />
             ))}
-          </Container>
+          </ButtonWrap>
         </Wrapper>
       </>);
   } else if (questionNum === 12) { /* 마지막 문제 버튼 누르면 결과페이지로 이동 */

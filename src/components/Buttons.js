@@ -4,24 +4,23 @@ import styled from 'styled-components';
 const Button = styled.div`
     cursor:pointer;
 
-    color: #2D2D2D;
     position: relative;
-    margin-top: 25px;
-
     width: 312px;
     height: 60px;
 
-    background: #ffffff;
-    border-radius: 30px;
+    margin-top: 8%;
     border: 1px solid #9706ED;
-
-    font-family: 'GmarketSansBold';
+    box-sizing: border-box;
+    border-radius: 30px;
+    background: #FFFFFF;
+    font-family: 'GmarketSansMedium';
     font-style: normal;
-    font-weight: bold;
+    font-weight: 500;
     font-size: 0.8rem;
-    line-height: 131%;
+    line-height: 4.5em;
     align-items: center;
     text-align: center;
+    color: #2D2D2D;
 
 `
 

@@ -14,11 +14,9 @@ const Wrapper = styled.div`
 `
 const Container = styled.div`
     display: flex;
-    position: relative;
     text-align: center;
     align-items: center;
     flex-direction: column;
-    margin: auto;
     background: #ffffff;
     margin-top: 60px ;
 `
@@ -41,7 +39,7 @@ const Invitation = styled.img`
     height: 187px;
 `
 
-const MainTitle = styled.div`
+const MainTitle = styled.h1`
     position: relative;
     margin-top: 20px;
     font-family: 'GmarketSansBold';
@@ -52,14 +50,14 @@ const MainTitle = styled.div`
     text-align: center;
     color: #2D2D2D;
 `
-const SubTitle = styled.div`
+const SubTitle = styled.h3`
     position: relative;
-    margin-top: 5px;
+    margin-top: 1px;
     font-family: 'GmarketSansMedium';
     font-style: normal;
     font-weight: 500;
     font-size: 12px;
-    line-height: 132%;
+    line-height: 25%;
     text-align: center;
     color: #6E6E6E;
 `
@@ -80,7 +78,7 @@ function LandingPage() {
                     <Invitation src={StartImg}></Invitation>
                     <MainTitle>나와 어울리는 파티는?</MainTitle>
                     <SubTitle>나의 성향과 어울리는 파티 찾기 테스트</SubTitle>
-                    <StartBtn text={"테스트하기"} onclick={onClickStartBtn}/>
+                    <StartBtn text={"테스트 하기"} onclick={onClickStartBtn}/>
                 </Container>
             </Wrapper>
             <QuizPage isShow={isQuizShow} />

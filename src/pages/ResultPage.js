@@ -1,5 +1,5 @@
 import React from 'react';
-// import { NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import Parser from 'html-react-parser';
 import CopyToClipboard from "react-copy-to-clipboard";
@@ -44,7 +44,7 @@ const Wrapper = styled.div`
 `
 
 const Container = styled.div`
-    position: relative; /* 보여줘 */
+    position: relative;
     margin: 20px;
 `
 
@@ -225,7 +225,7 @@ function ResultPage({ match }) {
                     <ResultWrap>
                         <ResultImg isNormal={finalType} src={results[finalType].img} />
                         <ResultSub>{Parser(results[finalType].title)}</ResultSub>
-                        <ResultTitle>{results[finalType].name}</ResultTitle> {/* 여기는 Parser없네 */}
+                        <ResultTitle>{results[finalType].name}</ResultTitle>
                         <Content>{Parser(results[finalType].description)}</Content>
                     </ResultWrap>
                     <DivisionLine />
@@ -245,9 +245,9 @@ function ResultPage({ match }) {
                     <FlexLayout>
                         <ShareSquare>
                             <FlexLayout>
-                                <KakaoShareBtn _sub={results[finalType].title} _title={results[finalType].name} _imageUrl={results[finalType].img} _finalType={finalType} />
+                                {/* <KakaoShareBtn _sub={results[finalType].title} _title={results[finalType].name} _imageUrl={results[finalType].img} _finalType={finalType} /> */}
                                 <CopyToClipboard text={link}>
-                                    <Button onClick={alertMessage}><Img src={LinkCopyBtn}/></Button>
+                                    <Button onClick={alertMessage}>{/*<Img src={LinkCopyBtn}>*/}</Button>
                                 </CopyToClipboard>
                             </FlexLayout>
                             <BtnToPage exact to='/'><Buttons type={'result-activated'} text={'테스트 다시 하기'} /></BtnToPage>
