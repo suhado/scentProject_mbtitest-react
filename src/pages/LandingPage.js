@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import StartBtn from '../components/StartBtn';
-import StartImg from './START.png';
+import StartImg from '../contents/START.png';
 import QuizPage from './QuizPage';
 
 const Wrapper = styled.div`

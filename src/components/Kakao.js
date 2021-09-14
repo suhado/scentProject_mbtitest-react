@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import kakao from '../assets/btn/btn_kakao.svg';
-import cry_for_kakao from '../assets/result/pic_cry_for_kakao.png';
+import kakao from './btn/btn_kakao.svg';
 
 const { Kakao } = window;
 
@@ -24,9 +23,7 @@ function KaKao({ _title, _sub, _imageUrl, _finalType }) {
     let replaced_sub = _sub.replace('<br/>', ' ');
 
     let replaced_imageUrl = ''
-    if (_finalType === 16) {
-        replaced_imageUrl = cry_for_kakao;
-    } else {
+    if (_finalType) {
         replaced_imageUrl = 'https://find-my-roomie.vercel.app/' + _imageUrl.replace('../', '');
     }
 

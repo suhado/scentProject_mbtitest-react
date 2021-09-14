@@ -17,7 +17,7 @@ const Wrapper = styled.div`
 const Text = styled.div`
   position: absolute;
   margin-top: 100px;
-  /* margin-bottom: 150px; */
+  margin-bottom: 200px;
   font-family: 'GmarketSansMedium';
   font-style: normal;
   font-weight: 500;
@@ -27,8 +27,9 @@ const Text = styled.div`
   color: #2D2D2D;
 `
 const ButtonWrap = styled.div`
-  position: absolute;
-  margin-top: 82%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 19rem;
 `
 
 function QuizPage({ isShow }) {
@@ -81,16 +82,16 @@ function QuizPage({ isShow }) {
       <>
         <Wrapper isShow={isShow}>
             <Text>{Parser(contents[questionNum].question)}</Text> {/* 순서대로 질문 보여주기 */}
-          <ButtonWrap> 
-          {contents[questionNum].answers.map((answer, i) => (
-              <ButtonComponent
-                key={'answer' + i}
-                idx={i}
-                text={Parser(answer.text)}
-                onclick={onConditionChange}
-              />
-            ))}
-          </ButtonWrap>
+            <ButtonWrap> 
+            {contents[questionNum].answers.map((answer, i) => (
+                <ButtonComponent
+                  key={'answer' + i}
+                  idx={i}
+                  text={Parser(answer.text)}
+                  onclick={onConditionChange}
+                />
+              ))}
+            </ButtonWrap>
         </Wrapper>
       </>);
   } else if (questionNum === 12) { /* 마지막 문제 버튼 누르면 결과페이지로 이동 */

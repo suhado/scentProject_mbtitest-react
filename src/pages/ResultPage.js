@@ -9,7 +9,7 @@ import product from '../contents/product';
 import Buttons from '../components/Buttons';
 import SmallBtn from '../components/SmallBtn';
 // import KakaoShareBtn from '../components/Kakao';
-// import LinkCopyBtn from '../assets/btn/btn_link.svg';
+// import LinkCopyBtn from '../components/btn/btn_link.svg';
 
 const Header = styled.div`
     margin-top: 15px;
@@ -45,11 +45,14 @@ const Wrapper = styled.div`
 
 const Container = styled.div`
     position: relative;
-    margin: 20px;
+    /* margin: 20px; */
+    align-items: center;
 `
 
 const ResultWrap = styled.div`
-    position: relative;;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 `
 
 const ResultSub = styled.h3`
@@ -84,6 +87,7 @@ const ResultTitle = styled.h3`
 const ResultImg = styled.img`
     position: relative;
     align-items: center;
+    vertical-align: middle;
     margin: 15px;
     width: 248px;
     height: 248px;
@@ -91,17 +95,22 @@ const ResultImg = styled.img`
 `
 
 const Content = styled.li`
-    position:relative;
-    margin-top: 50px;
-    margin: 3px;
-    font-family:'Spoqa-Han-Sans';
-    font-size: 10px;
-    color:black;
+    position: relative;
+    margin: -3px 20px;
+    font-family: "GmarketSansMedium";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 0.9rem;
+    line-height: 150%;
+    letter-spacing: -0.02rem;
+    color: #2d2d2d;
 `
 
 const DivisionLine = styled.div`
-    position: relative;
-    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 2% 25%;
     width: 50%;
     height: 1px;
     background-color: #9706ed;
@@ -142,12 +151,14 @@ const RecommandHouse = styled.div`
 `
 
 const SurveyWrap = styled.div`
-    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 `
 
 const SurveyTop = styled.div`
     position: relative;
-    margin: 20px;
+    margin-top: 20px;
 
     font-family: "GmarketSansBold";
     font-style: normal;
@@ -160,7 +171,7 @@ const SurveyTop = styled.div`
 
 const SurveyText = styled.h3`
     position: relative;
-    margin: 4px;
+    margin-top: 10px;
 
     font-family: "GmarketSansMedium";
     font-style: normal;
@@ -184,18 +195,11 @@ const ShareSquare = styled.div`
     height:20.8rem;
     background-color:white;
     border-radius: 0.5rem;
-    margin-top:1.7rem;
+    margin-top: 7.7rem;
 
     display:flex;
     flex-direction:column;
     align-items:center;
-`
-
-const Button = styled.button`
-    border: none;
-    outline:none;
-    background-color:white;
-    cursor:pointer;
 `
 
 const BtnToPage = styled(NavLink)`
@@ -203,7 +207,15 @@ const BtnToPage = styled(NavLink)`
     color:${props => props.theme.dark};
 `
 
-const Img = styled.img`
+const Text = styled.div`
+    position: relative;
+    font-family: "GmarketSansMedium";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 131%;
+    align-items: center;
+    text-align: center;
 `
 
 function ResultPage({ match }) {
@@ -213,8 +225,12 @@ function ResultPage({ match }) {
     const finalType = match.params.finalType;
 
     const alertMessage = () => {
-        alert("내 룸미 결과가 클립보드에 담겼어요!");
+        alert("링크가 복사되었습니다.");
     }
+
+    // const description = (finalType) => {
+    //     var des = Parser(results[finalType].description).split(\)
+    // }
 
     if (finalType) { /* 그냥 전부일때 */
         return (
@@ -227,6 +243,7 @@ function ResultPage({ match }) {
                         <ResultSub>{Parser(results[finalType].title)}</ResultSub>
                         <ResultTitle>{results[finalType].name}</ResultTitle>
                         <Content>{Parser(results[finalType].description)}</Content>
+                        
                     </ResultWrap>
                     <DivisionLine />
                     {/* <RecommandWrap>
@@ -245,17 +262,22 @@ function ResultPage({ match }) {
                     <FlexLayout>
                         <ShareSquare>
                             <FlexLayout>
-                                {/* <KakaoShareBtn _sub={results[finalType].title} _title={results[finalType].name} _imageUrl={results[finalType].img} _finalType={finalType} /> */}
-                                <CopyToClipboard text={link}>
-                                    <Button onClick={alertMessage}>{/*<Img src={LinkCopyBtn}>*/}</Button>
-                                </CopyToClipboard>
+                                {/* <KakaoShareBtn
+                                    _sub={results[finalType].title}
+                                    _title={results[finalType].name}
+                                    _imageUrl={results[finalType].img}
+                                    _finalType={finalType}/> */}
                             </FlexLayout>
+                            <CopyToClipboard text={link}>
+                                <Buttons text={'링크 복사하기'} onClick={alertMessage}></Buttons>
+                            </CopyToClipboard>
                             <BtnToPage exact to='/'><Buttons type={'result-activated'} text={'테스트 다시 하기'} /></BtnToPage>
                         </ShareSquare>
                     </FlexLayout>
-                    {/* <ResultBottom>
-
-                    </ResultBottom> */}
+                    {/* <ResultBottom> */}
+                        <Text>결과의 MBTI가 궁금하다면...?! 아래 인스타 계정 클릭!</Text>
+                        
+                    {/* </ResultBottom> */}
                     
                 </Container>
             </Wrapper>
