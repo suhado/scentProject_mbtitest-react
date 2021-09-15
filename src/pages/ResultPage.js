@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import Parser from "html-react-parser";
 import CopyToClipboard from "react-copy-to-clipboard";
-
 import results from "../contents/results";
 import product from "../contents/product";
 import Buttons from "../components/Buttons";
 import SmallBtn from "../components/SmallBtn";
+import MoreBtn from "../components/MoreBtn";
+import MorePerfumePage from "./MorePerfumePage";
+import { render } from "@testing-library/react";
 // import KakaoShareBtn from '../components/Kakao';
 // import LinkCopyBtn from '../assets/btn/btn_link.svg';
 
@@ -21,6 +23,7 @@ const Header = styled.div`
   text-align: center;
   color: #9706ed;
 `;
+
 const ResultTop = styled.div`
   position: relative;
   margin-top: 20px;
@@ -34,7 +37,9 @@ const ResultTop = styled.div`
   color: #2d2d2d;
 `;
 
+//LandingPage.js 참고해서 wrapper에 일단 코드 기록해둠
 const Wrapper = styled.div`
+  display: ${(props) => (props.isShow === true ? "flex" : "none")};
   display: flex;
   width: 100%;
   background-color: #fff;
@@ -205,22 +210,26 @@ function ResultPage({ match }) {
 
   const link = window.location.href;
   const finalType = match.params.finalType;
-
   const mbtiType = results[finalType].type;
 
   const alertMessage = () => {
     alert("내 룸미 결과가 클립보드에 담겼어요!");
   };
 
-  function Perfume({ img, name, house }) {
+  //MorePerfumePage 이동 코드..여기에 써놓은 내용은 신경쓰지 말고 MoreBtn에서 링크 연결 작업하면 될듯.
+  const [isShow, setIsShow] = useState(true);
+  const [isMorePerfumePage, setMorePerfumePage] = useState(false);
+
+  const onClickBtn = () => {
+    setIsShow(false);
+    setMorePerfumePage(true);
     return (
-      <div>
-        <RecommandImg isNormal={finalType} src={img} />
-        <RecommandName>{name}</RecommandName>
-        <RecommandHouse>{house}</RecommandHouse>
-      </div>
+      <>
+        <Header>boonboon</Header>
+        <MorePerfumePage isShow={isMorePerfumePage} />
+      </>
     );
-  }
+  };
 
   if (finalType) {
     /* 그냥 전부일때 */
@@ -238,14 +247,19 @@ function ResultPage({ match }) {
           <DivisionLine />
           <RecommandWrap>
             <RecommandTop>오늘 파티에 이런 향수 어때요?</RecommandTop>
-            {product[mbtiType].map((perfume) => (
-              <Perfume
-                img={perfume.img}
-                name={perfume.name}
-                house={perfume.house}
-              />
-            ))}
-            <SmallBtn />
+            {product[mbtiType].map((perfume, index) => {
+              if (index < 3) {
+                return (
+                  <div>
+                    <RecommandImg isNormal={finalType} src={perfume.img} />
+                    <RecommandName>{perfume.name}</RecommandName>
+                    <RecommandHouse>{perfume.house}</RecommandHouse>
+                  </div>
+                );
+              }
+            })}
+            {/*새로 만든 MoreBtn. onClick link 걸어야 함.*/}
+            <MoreBtn text={"더보기"} />
           </RecommandWrap>
           <DivisionLine />
           <SurveyWrap>
