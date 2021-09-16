@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import product from "../contents/product";
+import results from "../contents/results";
+import { Redirect } from 'react-router-dom'
+
 
 const Wrapper = styled.div`
   display: ${(props) => (props.isShow === true ? "flex" : "none")};
@@ -46,8 +49,10 @@ const RecommandName = styled.div``;
 
 const RecommandHouse = styled.div``;
 
-function MorePerfumePage() {
+function MorePerfumePage({ match }) {
   {
+    const finalType = match.params.finalType;
+    const mbtiType = results[finalType].type;
     /*이 위쪽에 이전 페이지로 되돌아가는 링크 추가해야 함. 
     finalType, mbtiType Morebtn클릭시 함께 값 받아와야 함.
 */

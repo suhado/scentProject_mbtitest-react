@@ -5,8 +5,7 @@ import Parser from "html-react-parser";
 import CopyToClipboard from "react-copy-to-clipboard";
 import results from "../contents/results";
 import product from "../contents/product";
-import Buttons from "../components/Buttons";
-import SmallBtn from "../components/SmallBtn";
+import RestartBtn from '../components/RestartBtn';
 import MoreBtn from "../components/MoreBtn";
 import MorePerfumePage from "./MorePerfumePage";
 import { render } from "@testing-library/react";
@@ -55,6 +54,9 @@ const Container = styled.div`
 
 const ResultWrap = styled.div`
   position: relative; ;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const ResultSub = styled.h3`
@@ -105,7 +107,7 @@ const Content = styled.li`
 
 const DivisionLine = styled.div`
   position: relative;
-  margin-top: 20px;
+  margin: 7% 25%;
   width: 50%;
   height: 1px;
   background-color: #9706ed;
@@ -113,6 +115,8 @@ const DivisionLine = styled.div`
 
 const RecommandWrap = styled.div`
   position: relative;
+  display: flex;
+  flex-direction: column;
 `;
 
 const RecommandTop = styled.div`
@@ -143,11 +147,14 @@ const RecommandHouse = styled.div``;
 
 const SurveyWrap = styled.div`
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const SurveyTop = styled.div`
   position: relative;
-  margin: 20px;
+  margin-top: 20px;
 
   font-family: "GmarketSansBold";
   font-style: normal;
@@ -160,7 +167,6 @@ const SurveyTop = styled.div`
 
 const SurveyText = styled.h3`
   position: relative;
-  margin: 4px;
 
   font-family: "GmarketSansMedium";
   font-style: normal;
@@ -181,7 +187,7 @@ const FlexLayout = styled.div`
 
 const ShareSquare = styled.div`
   width: 100%;
-  height: 20.8rem;
+  height: 20rem;
   background-color: white;
   border-radius: 0.5rem;
   margin-top: 1.7rem;
@@ -191,19 +197,72 @@ const ShareSquare = styled.div`
   align-items: center;
 `;
 
-const Button = styled.button`
-  border: none;
-  outline: none;
-  background-color: white;
-  cursor: pointer;
+const SmallBtn = styled.button`
+    cursor:pointer;
+    
+    display: flex;
+    flex-direction: column;
+    margin: 24px auto;
+    width: 180px;
+    height: 48px;
+    background: #ffffff;
+    border-radius: 28px;
+    border: 2px solid #9706ed;
+    font-family: "GmarketSansmedium";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 47px;
+    align-items: center;
+    text-align: center;
+    color: #2d2d2d;
 `;
+
+const CopyBtn = styled.button`
+    cursor:pointer;
+
+    position: relative;
+    width: 312px;
+    height: 60px;
+
+    margin-top: 8%;
+    border: 1px solid #9706ED;
+    box-sizing: border-box;
+    border-radius: 30px;
+    background: #9706ED;
+    font-family: 'GmarketSansMedium';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 0.8rem;
+    line-height: 4.5em;
+    align-items: center;
+    text-align: center;
+    color: #ffffff;
+`
 
 const BtnToPage = styled(NavLink)`
   text-decoration: none;
   color: ${(props) => props.theme.dark};
 `;
 
-const Img = styled.img``;
+const ResultBottom = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
+
+const Text = styled.div`
+  position: relative;
+  margin-top: 5px;
+  font-family: "GmarketSansMedium";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 131%;
+  align-items: center;
+  text-align: center;
+`
 
 function ResultPage({ match }) {
   window.scrollTo(0, 0);
@@ -213,23 +272,27 @@ function ResultPage({ match }) {
   const mbtiType = results[finalType].type;
 
   const alertMessage = () => {
-    alert("내 룸미 결과가 클립보드에 담겼어요!");
+    alert("링크가 복사되었습니다.");
+  };
+
+  const onClicksurveyLink = () => {
+    window.location.href = "https://github.com/suhado/test_react"
   };
 
   //MorePerfumePage 이동 코드..여기에 써놓은 내용은 신경쓰지 말고 MoreBtn에서 링크 연결 작업하면 될듯.
-  const [isShow, setIsShow] = useState(true);
-  const [isMorePerfumePage, setMorePerfumePage] = useState(false);
+  // const [isShow, setIsShow] = useState(true);
+  // const [isMorePerfumePage, setMorePerfumePage] = useState(false);
 
-  const onClickBtn = () => {
-    setIsShow(false);
-    setMorePerfumePage(true);
-    return (
-      <>
-        <Header>boonboon</Header>
-        <MorePerfumePage isShow={isMorePerfumePage} />
-      </>
-    );
-  };
+  // const onClickBtn = () => {
+  //   setIsShow(false);
+  //   setMorePerfumePage(true);
+  //   return (
+  //     <>
+  //       <Header>boonboon</Header>
+  //       <MorePerfumePage isShow={isMorePerfumePage} />
+  //     </>
+  //   );
+  // };
 
   if (finalType) {
     /* 그냥 전부일때 */
@@ -250,41 +313,42 @@ function ResultPage({ match }) {
             {product[mbtiType].map((perfume, index) => {
               if (index < 3) {
                 return (
-                  <div>
+                  <>
                     <RecommandImg isNormal={finalType} src={perfume.img} />
                     <RecommandName>{perfume.name}</RecommandName>
                     <RecommandHouse>{perfume.house}</RecommandHouse>
-                  </div>
+                  </>
                 );
               }
             })}
             {/*새로 만든 MoreBtn. onClick link 걸어야 함.*/}
-            <MoreBtn text={"더보기"} />
+            <MoreBtn text={"향수 더보기"} />
           </RecommandWrap>
           <DivisionLine />
           <SurveyWrap>
             <SurveyTop>평소 향수에 관심이 있으신가요?</SurveyTop>
             <SurveyText>향수에 관한 생각을 설문조사로 알려주세요</SurveyText>
-            <SmallBtn text={"설문조사 참여하기!!"} />
+            <SmallBtn onClick={onClicksurveyLink}>설문조사 참여하기!!</SmallBtn>
           </SurveyWrap>
           <FlexLayout>
             <ShareSquare>
-              <FlexLayout>
-                {/* <KakaoShareBtn _sub={results[finalType].title} _title={results[finalType].name} _imageUrl={results[finalType].img} _finalType={finalType} /> */}
+                <FlexLayout> 
+                    {/* <KakaoShareBtn
+                        _sub={results[finalType].title}
+                        _title={results[finalType].name}
+                        _imageUrl={results[finalType].img}
+                        _finalType={finalType}/> */}
+                </FlexLayout>
                 <CopyToClipboard text={link}>
-                  <Button onClick={alertMessage}>
-                    {/*<Img src={LinkCopyBtn}>*/}
-                  </Button>
+                    <CopyBtn onClick={alertMessage}>링크 복사하기</CopyBtn>
                 </CopyToClipboard>
-              </FlexLayout>
-              <BtnToPage exact to="/">
-                <Buttons type={"result-activated"} text={"테스트 다시 하기"} />
-              </BtnToPage>
+                <BtnToPage exact to='/'><RestartBtn type={'result-activated'} text={'테스트 다시하기'} /></BtnToPage>
             </ShareSquare>
           </FlexLayout>
-          {/* <ResultBottom>
-
-                    </ResultBottom> */}
+        <ResultBottom>
+            <Text>결과의 MBTI가 궁금하다면...?! 아래 인스타 계정 클릭!</Text>
+            <Text>boonboon_scent</Text>
+        </ResultBottom>
         </Container>
       </Wrapper>
     );

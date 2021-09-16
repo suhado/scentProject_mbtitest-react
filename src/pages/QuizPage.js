@@ -58,16 +58,20 @@ function QuizPage({ isShow }) {
     } else if (questionNum === 11) { // 마지막 문제일때
       setTypeTF(typeTF + record);
 
-      var result = 0; //result 값 초기화
+      let result = 0; //result 값 초기화
 
-      if (typeEI >= 2 ? result = result + 8 : "") {
-        if (typeSN >= 2 ? "": result = result + 4) {
-          if (typeTF >= 2 ? result = result + 2 : "") {
-            if (typeJP >= 2 ? "": result = result + 1) {
-            }
-          }
-        }
-      }
+      if (typeEI >= 2) {
+        result = result + 8;
+      };
+      if (typeSN >= 2) {
+        result = result + 4;
+      };
+      if (typeTF >= 2) {
+        result = result + 2;
+      };
+      if (typeJP >= 2) {
+        result = result + 1;
+      };
 
     let num = result;
     // setFinalType(num);
