@@ -9,6 +9,7 @@ import RestartBtn from '../components/RestartBtn';
 import MoreBtn from "../components/MoreBtn";
 import MorePerfumePage from "./MorePerfumePage";
 import { render } from "@testing-library/react";
+import { FaInstagram, IconName } from "react-icons/fa";
 // import KakaoShareBtn from '../components/Kakao';
 // import LinkCopyBtn from '../assets/btn/btn_link.svg';
 
@@ -96,13 +97,21 @@ const ResultImg = styled.img`
   border-radius: 70%;
 `;
 
+const ContentWrap = styled.ul`
+  position: relative;
+  margin: 3px;
+  font-family: "GmarketSansMedium";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 0.9rem;
+  text-align: left;
+  line-height: 150%;
+  letter-spacing: -0.02rem;
+  color: #2d2d2d;
+`
+
 const Content = styled.li`
   position: relative;
-  margin-top: 50px;
-  margin: 3px;
-  font-family: "Spoqa-Han-Sans";
-  font-size: 10px;
-  color: black;
 `;
 
 const DivisionLine = styled.div`
@@ -187,10 +196,10 @@ const FlexLayout = styled.div`
 
 const ShareSquare = styled.div`
   width: 100%;
-  height: 20rem;
+  height: 14rem;
   background-color: white;
   border-radius: 0.5rem;
-  margin-top: 1.7rem;
+  margin-top: 8rem;
 
   display: flex;
   flex-direction: column;
@@ -272,27 +281,19 @@ function ResultPage({ match }) {
   const mbtiType = results[finalType].type;
 
   const alertMessage = () => {
-    alert("링크가 복사되었습니다.");
+    
+
+    return <div></div>
   };
 
   const onClicksurveyLink = () => {
-    window.location.href = "https://github.com/suhado/test_react"
+    window.open('https://docs.google.com/forms/d/e/1FAIpQLSe_SEmpnifk2MQnvHx8BALipOr8YW8S2EpaaFJNmVktDxAqKA/viewform?usp=sf_link');
   };
 
-  //MorePerfumePage 이동 코드..여기에 써놓은 내용은 신경쓰지 말고 MoreBtn에서 링크 연결 작업하면 될듯.
-  // const [isShow, setIsShow] = useState(true);
-  // const [isMorePerfumePage, setMorePerfumePage] = useState(false);
-
-  // const onClickBtn = () => {
-  //   setIsShow(false);
-  //   setMorePerfumePage(true);
-  //   return (
-  //     <>
-  //       <Header>boonboon</Header>
-  //       <MorePerfumePage isShow={isMorePerfumePage} />
-  //     </>
-  //   );
-  // };
+  const onClickInsta = () => {
+    window.open('https://www.instagram.com/boonboon_scent/');
+  };
+  
 
   if (finalType) {
     /* 그냥 전부일때 */
@@ -305,7 +306,9 @@ function ResultPage({ match }) {
             <ResultImg isNormal={finalType} src={results[finalType].img} />
             <ResultSub>{Parser(results[finalType].title)}</ResultSub>
             <ResultTitle>{results[finalType].name}</ResultTitle>
-            <Content>{Parser(results[finalType].description)}</Content>
+            {results[finalType].description.split("\n").map((line) => {
+              return <ContentWrap><Content>{line}</Content></ContentWrap>;
+            })}
           </ResultWrap>
           <DivisionLine />
           <RecommandWrap>
@@ -347,7 +350,7 @@ function ResultPage({ match }) {
           </FlexLayout>
         <ResultBottom>
             <Text>결과의 MBTI가 궁금하다면...?! 아래 인스타 계정 클릭!</Text>
-            <Text>boonboon_scent</Text>
+            <Text onClick={onClickInsta}><FaInstagram />  boonboon_scent</Text>
         </ResultBottom>
         </Container>
       </Wrapper>

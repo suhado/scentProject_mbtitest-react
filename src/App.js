@@ -18,7 +18,7 @@ function App({ props }) {
       ></Route>
       {/* 일단 라우트 추가했는데 맞는지 잘 모르겠엄  */}
       <Route
-        path="/result/MorePerfumePage"
+        path="/more/:finalType"
         render={(props) => <MorePerfumePage props={props} {...props} />}
       ></Route>
       <ResultPage />
