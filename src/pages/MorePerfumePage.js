@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import product from "../contents/product";
 import results from "../contents/results";
-import { Redirect } from 'react-router-dom'
-
+import { Route, Link, NavLink, withRouter } from "react-router-dom";
+import backIcon from "../contents/back.png";
 
 const Wrapper = styled.div`
   display: ${(props) => (props.isShow === true ? "flex" : "none")};
@@ -34,6 +34,21 @@ const Header = styled.div`
 
 const RecommandWrap = styled.div`
   position: relative;
+  margin: 20px;
+
+  font-family: "GmarketSansBold";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 132%;
+  list-style: none;
+
+  gap: 20px;
+  align-items: center;
+
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  text-align: left;
 `;
 
 const RecommandImg = styled.img`
@@ -45,41 +60,103 @@ const RecommandImg = styled.img`
   grid-column-start: 1;
 `;
 
-const RecommandName = styled.div``;
+const RecommandName = styled.div`
+  font-family: "Open Sans";
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 119%;
+  color: #2d2d2d;
+`;
 
-const RecommandHouse = styled.div``;
+const RecommandHouse = styled.div`
+  font-family: "Open Sans";
+  font-weight: 600;
+  font-size: 10px;
+  line-height: 120%;
+  color: #6e6e6e;
+`;
 
-function MorePerfumePage({ match }) {
-  {
-    const finalType = match.params.finalType;
+const RecommandNote = styled.div`
+  font-family: "Open Sans";
+  font-weight: normal;
+  font-size: 9px;
+  line-height: 120%;
+  color: #6e6e6e;
+  margin-bottom: 7px;
+`;
+
+const RecommandGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-column-start: 2;
+  row-gap: 15px;
+  margin-bottom: 45px;
+`;
+
+const RecommandNoteGrid = styled.div``;
+
+const BackImg = styled.img`
+  display: inline-block;
+  margin: auto;
+  width: 20px;
+  height: 20px;
+  position: relative;
+  top: 35px;
+  left: 50px;
+  align-items: left;
+`;
+
+class MorePerfumePage extends React.Component {
+  render() {
+    const { params } = this.props.match;
+    const finalType = params.finalType;
     const mbtiType = results[finalType].type;
-    /*이 위쪽에 이전 페이지로 되돌아가는 링크 추가해야 함. 
-    finalType, mbtiType Morebtn클릭시 함께 값 받아와야 함.
-*/
-  }
-
-  return (
-    <>
-      <Header>boonboon</Header>
-      <Wrapper>
+    return (
+      <>
+        <Link to={{ pathname: `/result/${finalType}` }}>
+          <BackImg src={backIcon}></BackImg>
+        </Link>
+        <Header>boonboon</Header>
         <Container>
           <RecommandWrap>
-            {/* 수정해야 할 부분 - 화면 렌더링 현황
             {product[mbtiType].map((perfume, index) => {
+              const perfumeTop = perfume.top;
+              const perfumeMiddle = perfume.middle;
+              const perfumeBase = perfume.base;
               return (
-                <div>
+                <>
                   <RecommandImg isNormal={finalType} src={perfume.img} />
-                  <RecommandName>{perfume.name}</RecommandName>
-                  <RecommandHouse>{perfume.house}</RecommandHouse>
-                </div>
+                  <RecommandGrid>
+                    <RecommandName>{perfume.name}</RecommandName>
+                    <RecommandHouse>{perfume.house}</RecommandHouse>
+                    <RecommandHouse>Type: {perfume.type}</RecommandHouse>
+                    {perfumeTop ? (
+                      <RecommandNote>
+                        Top Notes: <br></br>
+                        {perfumeTop}
+                      </RecommandNote>
+                    ) : null}
+                    {perfumeMiddle ? (
+                      <RecommandNote>
+                        Middle Notes: <br></br>
+                        {perfumeMiddle}
+                      </RecommandNote>
+                    ) : null}
+                    {perfumeBase ? (
+                      <RecommandNote>
+                        Base Notes: <br></br>
+                        {perfumeBase}
+                      </RecommandNote>
+                    ) : null}
+                  </RecommandGrid>
+                </>
               );
             })}
-        */}
           </RecommandWrap>
         </Container>
-      </Wrapper>
-    </>
-  );
+      </>
+    );
+  }
 }
 
 export default MorePerfumePage;

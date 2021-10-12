@@ -3,6 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
 import ResultPage from "./pages/ResultPage";
 import MorePerfumePage from "./pages/MorePerfumePage";
+import testpage from "./pages/testpage";
 
 function App({ props }) {
   return (
@@ -16,11 +17,8 @@ function App({ props }) {
         path="/result/:finalType"
         render={(props) => <ResultPage props={props} {...props} />}
       ></Route>
-      {/* 일단 라우트 추가했는데 맞는지 잘 모르겠엄  */}
-      <Route
-        path="/more/:finalType"
-        render={(props) => <MorePerfumePage props={props} {...props} />}
-      ></Route>
+      <Route path="/perfume-detail/:finalType" component={MorePerfumePage} />
+      <Route path="/testpage" component={testpage} />
       <ResultPage />
     </Switch>
   );
