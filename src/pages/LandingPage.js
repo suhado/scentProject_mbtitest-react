@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import StartBtn from '../components/StartBtn';
 import StartImg from '../contents/START.png';
 import QuizPage from './QuizPage';
 
@@ -62,6 +61,26 @@ const SubTitle = styled.h3`
     color: #6E6E6E;
 `
 
+const StartBtn = styled.div`
+    cursor:pointer;
+
+    position: relative;
+    margin-top: 18%;
+    width: 216px;
+    height: 56px;
+    background: #9706ED;
+    border-radius: 28px;
+    border-color: #9706ED;
+    font-family: 'GmarketSansBold';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 22px;
+    line-height: 55px;
+    align-items: center;
+    text-align: center;
+    color: #FFFFFF;
+`
+
 function LandingPage() {
     const [isShow, setIsShow] = useState(true);
     const [isQuizShow, setIsQuizShow] = useState(false);
@@ -78,10 +97,10 @@ function LandingPage() {
                     <Invitation src={StartImg}></Invitation>
                     <MainTitle>나와 어울리는 파티는?</MainTitle>
                     <SubTitle>나의 성향과 어울리는 파티 찾기 테스트</SubTitle>
-                    <StartBtn text={"테스트 하기"} onclick={onClickStartBtn}/>
+                    <StartBtn onClick={onClickStartBtn}>테스트 하기</StartBtn>
                 </Container>
             </Wrapper>
-            <QuizPage isShow={isQuizShow} />
+            <QuizPage isQuizShow={isQuizShow} />
         </>
     );
 }

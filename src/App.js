@@ -4,7 +4,7 @@ import LandingPage from "./pages/LandingPage";
 import ResultPage from "./pages/ResultPage";
 import MorePerfumePage from "./pages/MorePerfumePage";
 
-function App({ props }) {
+function App() {
   return (
     <Switch>
       <Route
@@ -16,12 +16,10 @@ function App({ props }) {
         path="/result/:finalType"
         render={(props) => <ResultPage props={props} {...props} />}
       ></Route>
-      {/* 일단 라우트 추가했는데 맞는지 잘 모르겠엄  */}
       <Route
         path="/more/:finalType"
         render={(props) => <MorePerfumePage props={props} {...props} />}
       ></Route>
-      <ResultPage />
     </Switch>
   );
 }

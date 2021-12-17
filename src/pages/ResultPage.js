@@ -1,15 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import Parser from "html-react-parser";
 import CopyToClipboard from "react-copy-to-clipboard";
 import results from "../contents/results";
 import product from "../contents/product";
-import RestartBtn from '../components/RestartBtn';
-import MoreBtn from "../components/MoreBtn";
-import MorePerfumePage from "./MorePerfumePage";
-import { render } from "@testing-library/react";
-import { FaInstagram, IconName } from "react-icons/fa";
+import { FaInstagram } from "react-icons/fa";
 // import KakaoShareBtn from '../components/Kakao';
 // import LinkCopyBtn from '../assets/btn/btn_link.svg';
 
@@ -54,7 +50,7 @@ const Container = styled.div`
 `;
 
 const ResultWrap = styled.div`
-  position: relative; ;
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -108,7 +104,7 @@ const ContentWrap = styled.ul`
   line-height: 150%;
   letter-spacing: -0.02rem;
   color: #2d2d2d;
-`
+`;
 
 const Content = styled.li`
   position: relative;
@@ -207,47 +203,47 @@ const ShareSquare = styled.div`
 `;
 
 const SmallBtn = styled.button`
-    cursor:pointer;
-    
-    display: flex;
-    flex-direction: column;
-    margin: 24px auto;
-    width: 180px;
-    height: 48px;
-    background: #ffffff;
-    border-radius: 28px;
-    border: 2px solid #9706ed;
-    font-family: "GmarketSansmedium";
-    font-style: normal;
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 47px;
-    align-items: center;
-    text-align: center;
-    color: #2d2d2d;
+  cursor: pointer;
+
+  display: flex;
+  flex-direction: column;
+  margin: 24px auto;
+  width: 180px;
+  height: 48px;
+  background: #ffffff;
+  border-radius: 28px;
+  border: 2px solid #9706ed;
+  font-family: "GmarketSansmedium";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 47px;
+  align-items: center;
+  text-align: center;
+  color: #2d2d2d;
 `;
 
 const CopyBtn = styled.button`
-    cursor:pointer;
+  cursor: pointer;
 
-    position: relative;
-    width: 312px;
-    height: 60px;
+  position: relative;
+  width: 312px;
+  height: 60px;
 
-    margin-top: 8%;
-    border: 1px solid #9706ED;
-    box-sizing: border-box;
-    border-radius: 30px;
-    background: #9706ED;
-    font-family: 'GmarketSansMedium';
-    font-style: normal;
-    font-weight: bold;
-    font-size: 0.8rem;
-    line-height: 4.5em;
-    align-items: center;
-    text-align: center;
-    color: #ffffff;
-`
+  margin-top: 8%;
+  border: 1px solid #9706ed;
+  box-sizing: border-box;
+  border-radius: 30px;
+  background: #9706ed;
+  font-family: "GmarketSansMedium";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 0.8rem;
+  line-height: 4.5em;
+  align-items: center;
+  text-align: center;
+  color: #ffffff;
+`;
 
 const BtnToPage = styled(NavLink)`
   text-decoration: none;
@@ -259,7 +255,7 @@ const ResultBottom = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-`
+`;
 
 const Text = styled.div`
   position: relative;
@@ -271,7 +267,54 @@ const Text = styled.div`
   line-height: 131%;
   align-items: center;
   text-align: center;
-`
+`;
+const RestartBtn = styled.div`
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 312px;
+  height: 60px;
+
+  margin-top: 8%;
+  border: 1px solid #9706ed;
+  box-sizing: border-box;
+  border-radius: 30px;
+  background: #ffffff;
+  font-family: "GmarketSansMedium";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 0.8rem;
+  line-height: 4.5em;
+  align-items: center;
+  text-align: center;
+  color: #2d2d2d;
+`;
+const MoreBtn = styled(NavLink)`
+  cursor: pointer;
+
+  display: flex;
+  flex-direction: column;
+  margin: 24px auto;
+  width: 180px;
+  height: 48px;
+  background: #ffffff;
+  border-radius: 28px;
+  border: 2px solid #9706ed;
+  font-family: "GmarketSansmedium";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  text-decoration: none;
+  line-height: 47px;
+  align-items: center;
+  text-align: center;
+  color: #2d2d2d;
+`;
+// TODO: 카카오 공유버튼
+// TODO: 링크복사 alert메시지
+// TODO: RecommandName House 디자인
 
 function ResultPage({ match }) {
   window.scrollTo(0, 0);
@@ -281,81 +324,87 @@ function ResultPage({ match }) {
   const mbtiType = results[finalType].type;
 
   const alertMessage = () => {
-    
-
-    return <div></div>
+    return <div>alert</div>;
   };
 
   const onClicksurveyLink = () => {
-    window.open('https://docs.google.com/forms/d/e/1FAIpQLSe_SEmpnifk2MQnvHx8BALipOr8YW8S2EpaaFJNmVktDxAqKA/viewform?usp=sf_link');
+    window.open(
+      "https://docs.google.com/forms/d/e/1FAIpQLSe_SEmpnifk2MQnvHx8BALipOr8YW8S2EpaaFJNmVktDxAqKA/viewform?usp=sf_link"
+    );
   };
 
   const onClickInsta = () => {
-    window.open('https://www.instagram.com/boonboon_scent/');
+    window.open("https://www.instagram.com/boonboon_scent/");
   };
-  
 
-  if (finalType) {
-    /* 그냥 전부일때 */
-    return (
-      <Wrapper>
-        <Header>boonboon</Header>
-        <ResultTop>당신에게 어울리는 파티는?</ResultTop>
-        <Container>
-          <ResultWrap>
-            <ResultImg isNormal={finalType} src={results[finalType].img} />
-            <ResultSub>{Parser(results[finalType].title)}</ResultSub>
-            <ResultTitle>{results[finalType].name}</ResultTitle>
-            {results[finalType].description.split("\n").map((line) => {
-              return <ContentWrap><Content>{line}</Content></ContentWrap>;
-            })}
-          </ResultWrap>
-          <DivisionLine />
-          <RecommandWrap>
-            <RecommandTop>오늘 파티에 이런 향수 어때요?</RecommandTop>
-            {product[mbtiType].map((perfume, index) => {
-              if (index < 3) {
-                return (
-                  <>
-                    <RecommandImg isNormal={finalType} src={perfume.img} />
-                    <RecommandName>{perfume.name}</RecommandName>
-                    <RecommandHouse>{perfume.house}</RecommandHouse>
-                  </>
-                );
-              }
-            })}
-            {/*새로 만든 MoreBtn. onClick link 걸어야 함.*/}
-            <MoreBtn text={"향수 더보기"} />
-          </RecommandWrap>
-          <DivisionLine />
-          <SurveyWrap>
-            <SurveyTop>평소 향수에 관심이 있으신가요?</SurveyTop>
-            <SurveyText>향수에 관한 생각을 설문조사로 알려주세요</SurveyText>
-            <SmallBtn onClick={onClicksurveyLink}>설문조사 참여하기!!</SmallBtn>
-          </SurveyWrap>
-          <FlexLayout>
-            <ShareSquare>
-                <FlexLayout> 
-                    {/* <KakaoShareBtn
+  return (
+    <Wrapper>
+      <Header>boonboon</Header>
+      <ResultTop>당신에게 어울리는 파티는?</ResultTop>
+      <Container>
+        <ResultWrap>
+          <ResultImg src={results[finalType].img} />
+          <ResultSub>{Parser(results[finalType].title)}</ResultSub>
+          <ResultTitle>{results[finalType].name}</ResultTitle>
+          {results[finalType].description.split("\n").map((line) => {
+            return (
+              <ContentWrap>
+                <Content>{line}</Content>
+              </ContentWrap>
+            );
+          })}
+        </ResultWrap>
+        <DivisionLine />
+        <RecommandWrap>
+          <RecommandTop>오늘 파티에 이런 향수 어때요?</RecommandTop>
+          {product[mbtiType].map((perfume, index) => {
+            // TODO: 이 부분 어떻게 해결하지?
+            if (index < 3) {
+              return (
+                <>
+                  <RecommandImg src={perfume.img} />
+                  <RecommandName>{perfume.name}</RecommandName>
+                  <RecommandHouse>{perfume.house}</RecommandHouse>
+                </>
+              );
+            }
+          })}
+          <MoreBtn exact to={`/more/${finalType}`}>
+            향수 더보기
+          </MoreBtn>
+        </RecommandWrap>
+        <DivisionLine />
+        <SurveyWrap>
+          <SurveyTop>평소 향수에 관심이 있으신가요?</SurveyTop>
+          <SurveyText>향수에 관한 생각을 설문조사로 알려주세요</SurveyText>
+          <SmallBtn onClick={onClicksurveyLink}>설문조사 참여하기!!</SmallBtn>
+        </SurveyWrap>
+        <FlexLayout>
+          <ShareSquare>
+            <FlexLayout>
+              {/* <KakaoShareBtn
                         _sub={results[finalType].title}
                         _title={results[finalType].name}
                         _imageUrl={results[finalType].img}
                         _finalType={finalType}/> */}
-                </FlexLayout>
-                <CopyToClipboard text={link}>
-                    <CopyBtn onClick={alertMessage}>링크 복사하기</CopyBtn>
-                </CopyToClipboard>
-                <BtnToPage exact to='/'><RestartBtn type={'result-activated'} text={'테스트 다시하기'} /></BtnToPage>
-            </ShareSquare>
-          </FlexLayout>
+            </FlexLayout>
+            <CopyToClipboard text={link}>
+              <CopyBtn onClick={alertMessage}>링크 복사하기</CopyBtn>
+            </CopyToClipboard>
+            <BtnToPage exact to="/">
+              <RestartBtn>테스트 다시하기</RestartBtn>
+            </BtnToPage>
+          </ShareSquare>
+        </FlexLayout>
         <ResultBottom>
-            <Text>결과의 MBTI가 궁금하다면...?! 아래 인스타 계정 클릭!</Text>
-            <Text onClick={onClickInsta}><FaInstagram />  boonboon_scent</Text>
+          <Text>결과의 MBTI가 궁금하다면...?! 아래 인스타 계정 클릭!</Text>
+          <Text onClick={onClickInsta}>
+            <FaInstagram /> boonboon_scent
+          </Text>
         </ResultBottom>
-        </Container>
-      </Wrapper>
-    );
-  }
+      </Container>
+    </Wrapper>
+  );
 }
 
 export default ResultPage;

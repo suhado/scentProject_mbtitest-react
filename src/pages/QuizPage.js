@@ -6,7 +6,7 @@ import Parser from 'html-react-parser';
 import { Redirect } from 'react-router-dom'
 
 const Wrapper = styled.div`
-  display: ${props => props.isShow === true ? 'flex' : 'none'};
+  display: ${props => props.isQuizShow === true ? 'flex' : 'none'};
 
   background-color:white;
   flex-direction:column;
@@ -32,11 +32,10 @@ const ButtonWrap = styled.div`
   margin-top: 19rem;
 `
 
-function QuizPage({ isShow }) {
+function QuizPage({ isQuizShow }) {
 
   const [questionNum, setQuestionNum] = useState(0);
   const [linkTo, setLinkTo] = useState("");
-  const linkResult = "/result/";
   const [typeEI, setTypeEI] = useState(0);
   const [typeSN, setTypeSN] = useState(0);
   const [typeTF, setTypeTF] = useState(0);
@@ -74,9 +73,7 @@ function QuizPage({ isShow }) {
       };
 
     let num = result;
-    // setFinalType(num);
-    setLinkTo(linkResult + num);
-    // setQuestionNum(16);
+    setLinkTo("/result/" + num);
     }
     setQuestionNum(questionNum + 1); /* 문제 번호 하나씩 증가 */
   }
@@ -84,7 +81,7 @@ function QuizPage({ isShow }) {
   if (questionNum < 12) { /* 1~11 문제 버튼 누르면 */
     return (
       <>
-        <Wrapper isShow={isShow}>
+        <Wrapper isQuizShow={isQuizShow}>
             <Text>{Parser(contents[questionNum].question)}</Text> {/* 순서대로 질문 보여주기 */}
             <ButtonWrap> 
             {contents[questionNum].answers.map((answer, i) => (
