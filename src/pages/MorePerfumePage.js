@@ -1,15 +1,15 @@
 import React from "react";
+import { useNavigate, useParams } from "react-router";
 import styled from "styled-components";
 import product from "../contents/product";
 import results from "../contents/results";
+import { AiOutlineLeft } from 'react-icons/ai';
 
 const Wrapper = styled.div`
   display: flex;
   width: 100%;
   background-color: #ffffff;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
 `;
 const Container = styled.div`
   display: flex;
@@ -30,8 +30,16 @@ const Header = styled.div`
   color: #9706ed;
 `;
 
+const BackWrap = styled.div`
+  display: flex;
+  margin-left: 1rem;
+`;
+
 const RecommandWrap = styled.div`
-  position: relative;
+  display: grid;
+  grid-auto-rows: minmax(150px, auto);
+  background-color: #ffffff;
+  row-gap: 15px;
 `;
 
 const RecommandImg = styled.img`
@@ -43,20 +51,46 @@ const RecommandImg = styled.img`
   grid-column-start: 1;
 `;
 
-const RecommandName = styled.div``;
+const RecommandName = styled.div`
+  font-family: "Open Sans";
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 119%;
+  color: #2d2d2d;
+`;
 
-const RecommandHouse = styled.div``;
+const RecommandHouse = styled.div`
+  font-family: "Open Sans";
+  font-weight: 600;
+  font-size: 10px;
+  line-height: 120%;
+  color: #6e6e6e;
+`;
 
-/*TODO: 이전 페이지로 되돌아가는 버튼, 링크 추가*/
+const RecommandNote = styled.div`
+  font-family: "Open Sans";
+  font-weight: normal;
+  font-size: 9px;
+  line-height: 120%;
+  color: #6e6e6e;
+`;
 
-function MorePerfumePage({ match }) {
-  const finalType = match.params.finalType;
+function MorePerfumePage() {
+  const { finalType } = useParams();
   const mbtiType = results[finalType].type;
+
+  let navigate = useNavigate();
+  const onClickBack = () => {
+    navigate("/result/" + finalType);
+  }
 
   return (
     <>
       <Header>boonboon</Header>
       <Wrapper>
+        <BackWrap>
+          <AiOutlineLeft onClick={onClickBack} /> 
+        </BackWrap>
         <Container>
           <RecommandWrap>
             {product[mbtiType].map((perfume, index) => {
@@ -65,6 +99,9 @@ function MorePerfumePage({ match }) {
                   <RecommandImg src={perfume.img} />
                   <RecommandName>{perfume.name}</RecommandName>
                   <RecommandHouse>{perfume.house}</RecommandHouse>
+                  <RecommandNote>{perfume.top}</RecommandNote>
+                  <RecommandNote>{perfume.middle}</RecommandNote>
+                  <RecommandNote>{perfume.base}</RecommandNote>
                 </div>
               );
             })}

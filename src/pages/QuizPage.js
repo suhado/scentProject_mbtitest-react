@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import ButtonComponent from '../components/Buttons';
 import contents from '../contents/questions';
 import Parser from 'html-react-parser';
-import { Redirect } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 
 const Wrapper = styled.div`
   display: ${props => props.isQuizShow === true ? 'flex' : 'none'};
@@ -40,7 +40,6 @@ function QuizPage({ isQuizShow }) {
   const [typeSN, setTypeSN] = useState(0);
   const [typeTF, setTypeTF] = useState(0);
   const [typeJP, setTypeJP] = useState(0);
-  // const [finalType, setFinalType] = useState(0);
 
   const onConditionChange = (key) => {
 
@@ -98,7 +97,7 @@ function QuizPage({ isQuizShow }) {
   } else if (questionNum === 12) { /* 마지막 문제 버튼 누르면 결과페이지로 이동 */
     return (
       <>
-          <Redirect to={linkTo}></Redirect>
+          <Navigate to={linkTo} />
       </>
     );
   }

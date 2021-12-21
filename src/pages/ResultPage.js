@@ -1,11 +1,13 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { useParams } from "react-router";
 import styled from "styled-components";
 import Parser from "html-react-parser";
 import CopyToClipboard from "react-copy-to-clipboard";
 import results from "../contents/results";
 import product from "../contents/product";
 import { FaInstagram } from "react-icons/fa";
+
 // import KakaoShareBtn from '../components/Kakao';
 // import LinkCopyBtn from '../assets/btn/btn_link.svg';
 
@@ -119,9 +121,9 @@ const DivisionLine = styled.div`
 `;
 
 const RecommandWrap = styled.div`
-  position: relative;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  background-color: #ffffff;
+  row-gap: 15px;
 `;
 
 const RecommandTop = styled.div`
@@ -146,9 +148,21 @@ const RecommandImg = styled.img`
   grid-column-start: 1;
 `;
 
-const RecommandName = styled.div``;
+const RecommandName = styled.div`
+  font-family: "Open Sans";
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 119%;
+  color: #2d2d2d;
+`;
 
-const RecommandHouse = styled.div``;
+const RecommandHouse = styled.div`
+  font-family: "Open Sans";
+  font-weight: 600;
+  font-size: 10px;
+  line-height: 120%;
+  color: #6e6e6e;
+`;
 
 const SurveyWrap = styled.div`
   position: relative;
@@ -178,7 +192,6 @@ const SurveyText = styled.h3`
   font-weight: 500;
   font-size: 12px;
   line-height: 132%;
-
   text-align: center;
   color: #6e6e6e;
 `;
@@ -316,11 +329,11 @@ const MoreBtn = styled(NavLink)`
 // TODO: 링크복사 alert메시지
 // TODO: RecommandName House 디자인
 
-function ResultPage({ match }) {
+function ResultPage() {
   window.scrollTo(0, 0);
 
   const link = window.location.href;
-  const finalType = match.params.finalType;
+  const { finalType } = useParams();
   const mbtiType = results[finalType].type;
 
   const alertMessage = () => {
