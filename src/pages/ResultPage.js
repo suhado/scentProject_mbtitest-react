@@ -124,6 +124,7 @@ const RecommandWrap = styled.div`
   display: grid;
   background-color: #ffffff;
   row-gap: 15px;
+  justify-items: center;
 `;
 
 const RecommandTop = styled.div`
@@ -280,6 +281,7 @@ const Text = styled.div`
   line-height: 131%;
   align-items: center;
   text-align: center;
+  cursor: pointer;
 `;
 const RestartBtn = styled.div`
   cursor: pointer;
@@ -395,11 +397,6 @@ function ResultPage() {
         <FlexLayout>
           <ShareSquare>
             <FlexLayout>
-              {/* <KakaoShareBtn
-                        _sub={results[finalType].title}
-                        _title={results[finalType].name}
-                        _imageUrl={results[finalType].img}
-                        _finalType={finalType}/> */}
             </FlexLayout>
             <CopyToClipboard text={link}>
               <CopyBtn onClick={alertMessage}>링크 복사하기</CopyBtn>
