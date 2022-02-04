@@ -401,7 +401,7 @@ function ResultPage() {
             <CopyToClipboard text={link}>
               <CopyBtn onClick={alertMessage}>링크 복사하기</CopyBtn>
             </CopyToClipboard>
-            <BtnToPage exact to="/">
+            <BtnToPage exact to="/scentProject_jquery-to-react">
               <RestartBtn>테스트 다시하기</RestartBtn>
             </BtnToPage>
           </ShareSquare>

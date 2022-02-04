@@ -8,7 +8,7 @@ function App() {
   return (
       <Routes>
         <Route
-          path="/"
+          path="/scentProject_jquery-to-react"
           element={<LandingPage />}
         ></Route>
         <Route
