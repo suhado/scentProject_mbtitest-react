@@ -3,7 +3,6 @@ import { Route, Routes } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
 import ResultPage from "./pages/ResultPage";
 import MorePerfumePage from "./pages/MorePerfumePage";
-
 function App() {
   return (
       <Routes>
